@@ -1,0 +1,3 @@
+[submodule "vgsx"]
+	path = vgsx
+	url = https://github.com/suzukiplan/vgsx

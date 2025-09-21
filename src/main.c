@@ -17,8 +17,8 @@ typedef struct {
     int32_t* ax;
     int32_t* ay;
     int32_t degree;
+    uint32_t scale;
     int oi;
-    int bear;
 } Child;
 
 struct GlobalVariables {
@@ -81,9 +81,10 @@ void add_child(int32_t x, int32_t y, int32_t* ax, int32_t* ay, int32_t degree)
     g.child[g.child_count].ax = ax;
     g.child[g.child_count].ay = ay;
     g.child[g.child_count].degree = degree;
-    g.child[g.child_count].bear = 60;
+    g.child[g.child_count].scale = 1;
     g.child[g.child_count].oi = O_CHILD + g.child_count;
     vgs_sprite(g.child[g.child_count].oi, TRUE, x >> 8, y >> 8, 1, 0, P_PLAYER);
+    OAM[g.child[g.child_count].oi].scale = 1;
     g.child_count++;
 }
 
@@ -173,11 +174,13 @@ void move_child(Child* c)
     OAM[c->oi].x = ox;
     OAM[c->oi].y = oy;
 
-    if (c->bear) {
-        c->bear--;
-        if (0 == c->bear) {
+    if (c->scale) {
+        c->scale++;
+        if (100 == c->scale) {
             add_child(c->x, c->y, &c->x, &c->y, c->degree);
+            c->scale = 0;
         }
+        OAM[c->oi].scale = c->scale;
     } else {
         if (hitchk((g.player.x >> 8) + 4, (g.player.y >> 8) + 4, 8, 8, (c->x >> 8) + 4, (c->y >> 8) + 4, 8, 8)) {
             g.player.collision = TRUE;

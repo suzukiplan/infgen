@@ -11,6 +11,7 @@ M68KCC += -T${VGSX_ROOT}/lib/linker.ld
 OBJ_FILES = ./src/main.o
 # OBJ_FILES += ./src/sub.o
 CHR_FILES = ./bmp/font.chr
+CHR_FILES += ./bmp/player.chr
 BGM_FILES = ./vgm/sample.vgm
 WAV_FILES = ./wav/sample.wav
 

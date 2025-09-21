@@ -43,6 +43,8 @@ brew install sdl2
 cd ~
 git clone https://github.com/suzukiplan/infgen
 cd infgen
+git submodule init
+git submodule update
 make
 ```
 
@@ -90,6 +92,8 @@ sudo make install-gcc install-target-libgcc
 cd ~
 git clone https://github.com/suzukiplan/infgen
 cd infgen
+git submodule init
+git submodule update
 make
 ```
 
